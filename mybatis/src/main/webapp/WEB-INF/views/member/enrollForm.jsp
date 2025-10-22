@@ -1,0 +1,102 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<title>Enroll Form</title>
+</head>
+<body>
+	<jsp:include page="../common/menubar.jsp" />
+	<div class="outer">
+		<br>
+		<h2 align="center">회 원 가 입</h2>
+		<br>
+		<form action="insert.me" method="post" id="enrollForm">
+			<table align="center">
+				<tr>
+					<td>* ID</td>
+					<td>
+						<input type="text" name="userId" id="userId" required>
+						<div id="checkResult" style="font-size:0.8em; display:none"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>* PWD</td>
+					<td><input type="password" name="userPwd" required></td>
+				</tr>
+				<tr>
+					<td>* NAME</td>
+					<td><input type="text" name="userName" required></td>
+				</tr>
+				<tr>
+					<td>&ensp; EMAIL</td>
+					<td><input type="email" name="email"></td>
+				</tr>
+				<tr>
+					<td>&ensp; BIRTHDAY</td>
+					<td><input type="text" name="birthday" placeholder="생년월일(6자리)"></td>
+				</tr>
+				<tr>
+					<td>&ensp; GENDER</td> 
+					<td align="center">
+						<input type="radio" name="gender" value="M">남
+						<input type="radio" name="gender" value="F">여
+					</td>
+				</tr>
+				<tr>
+					<td>&ensp; PHONE</td>
+					<td><input type="text" name="phone" placeholder="-포함"></td>
+				</tr>
+				<tr>
+					<td>&ensp; ADDRESS</td>
+					<td><input type="text" name="address"> </td>
+				</tr>
+			</table>
+			<br>
+			<div align="center">
+				<button type="reset">초기화</button>
+				<button type="submit">회원가입</button>
+			</div>
+		</form>
+		<br><br>
+	</div>
+	
+	<script>
+		const $idInput = $("#userId");
+		$idInput.keyup(function(){
+			console.log($idInput.val());
+			if($idInput.val().length >= 5){
+				$.ajax({
+					url: "idCheck.me",
+					data: {checkId: $idInput.val()},
+					success: function(result){
+						if(result == "idN"){
+							$("#checkResult").show();
+							$("#checkResult").css("color","red")
+											 .text("중복된 아이디가 존재합니다. 다시 입력해 주세요");
+							$("#enrollForm :submit").attr("disabled",true)
+						}else{
+							$("#checkResult").show();
+							$("#checkResult").css("color","green")
+											 .text("멋진 아이디네요");
+							$("#enrollForm :submit").attr("disabled",false)
+						}						
+					},
+					error: function(){
+						console.log("아이디 체크용 ajax통신 실패")
+					}
+				
+				})
+			} else{
+				$("#checkResult").hide();
+			}
+		
+		})
+		
+	
+	</script>
+</body>
+</html>
