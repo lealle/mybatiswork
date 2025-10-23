@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardMapper">
+  <resultMap type="Board" id ="boardResultSet">
+  	<result column="board_no" property="boardno"/>
+  	<result column="board_title" property="boardtitle"/>
+  	<result column="board_content" property="boardcontent"/>
+  	<result column="board_writer" property="boardwriter"/>
+  	<result column="count" property="count"/>
+  	<result column="create_date" property="createdate"/>
+  	<result column="status" property="status"/>
+  
+  </resultMap>
+  
+  
+  <resultMap type="Reply" id ="replyResultSet">
+  	<result column="reply_no" property="replyno"/>
+  	<result column="reply_content" property="replycontent"/>
+  	<result column="ref_bno" property="refbno"/>
+  	<result column="reply_writer" property="replywriter"/>
+  	<result column="create_date" property="createdate"/>
+  	<result column="status" property="status"/>
+  </resultMap>
+  
+  
+  
+  
+  
+  
+  <select id="totalRecord" resultType="_int">
+    select count(*) from Board where status='Y'
+  </select>
+	<select id="selectList"  resultMap="boardResultSet">
+    select * from Board where status='Y'
+    order by board_no desc 
+  </select>
+
+<select id="searchCount" resultType="_int">
+    select count(*) from Board where status='Y'
+     <if test="keyField=='writer'">
+		 	and board_writer
+		 </if>
+		 <if test="keyField=='title'">
+		 	and board_title
+		 </if>
+		 <if test="keyField=='content'">
+		 	and board_content
+		 </if>
+		 like '%' || #{keyWord} || '%'
+    
+  </select>
+
+<select id="selectSearchList"  resultMap="boardResultSet">
+    select * from Board where status='Y'
+    <if test="keyField=='writer'">
+		 	and board_writer
+		 </if>
+		 <if test="keyField=='title'">
+		 	and board_title
+		 </if>
+		 <if test="keyField=='content'">
+		 	and board_content
+		 </if>
+		 like '%' || #{keyWord} || '%'
+    order by board_no desc 
+  </select>
+  
+  
+  <update id="increaseCount" >
+    update Board 
+    set count = count + 1  
+    where status='Y' 
+    and board_no = #{boardno}
+  </update>
+  
+  
+  
+  <select id="selectBoard"  resultMap="boardResultSet">
+    select * from Board where status='Y' and board_no = #{boardno}
+  </select>
+  <select id="selectReplyList"  resultMap="replyResultSet">
+    select * from Reply where status='Y' and ref_bno = #{boardno}
+    order by reply_no desc 
+  </select>
+  
+  
+  
+  
+  
+  
+</mapper>

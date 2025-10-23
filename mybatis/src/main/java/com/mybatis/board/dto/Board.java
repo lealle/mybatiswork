@@ -25,28 +25,28 @@ public class Board {
 		this.createdate = create_date;
 		this.status = status;
 	}
-	public int getBoard_no() {
+	public int getBoardno() {
 		return boardno;
 	}
-	public void setBoard_no(int board_no) {
+	public void setBoardno(int board_no) {
 		this.boardno = board_no;
 	}
-	public String getBoard_title() {
+	public String getBoardtitle() {
 		return boardtitle;
 	}
-	public void setBoard_title(String board_title) {
+	public void setBoardtitle(String board_title) {
 		this.boardtitle = board_title;
 	}
-	public String getBoard_content() {
+	public String getBoardcontent() {
 		return boardcontent;
 	}
-	public void setBoard_content(String board_content) {
+	public void setBoardcontent(String board_content) {
 		this.boardcontent = board_content;
 	}
-	public String getBoard_writer() {
+	public String getBoardwriter() {
 		return boardwriter;
 	}
-	public void setBoard_writer(String board_writer) {
+	public void setBoardwriter(String board_writer) {
 		this.boardwriter = board_writer;
 	}
 	public int getCount() {
@@ -55,10 +55,10 @@ public class Board {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public Date getCreate_date() {
+	public Date getCreatedate() {
 		return createdate;
 	}
-	public void setCreate_date(Date create_date) {
+	public void setCreatedate(Date create_date) {
 		this.createdate = create_date;
 	}
 	public String getStatus() {
@@ -66,6 +66,12 @@ public class Board {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	@Override
+	public String toString() {
+		return "Board [boardno=" + boardno + ", boardtitle=" + boardtitle + ", boardcontent=" + boardcontent
+				+ ", boardwriter=" + boardwriter + ", count=" + count + ", createdate=" + createdate + ", status="
+				+ status + "]";
 	}
 	
 	

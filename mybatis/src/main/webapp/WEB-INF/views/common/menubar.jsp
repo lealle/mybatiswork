@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+	
 	<html>
 
 	<head>
@@ -41,7 +43,10 @@
 	<body>
 		<h2 align="center">Welcome to MyBatis World</h2>
 		<div class="login-area" align="right">
-			<form action="">
+		<c:choose>
+		<c:when test="${empty loginMem }">
+
+			<form action="login.me" method="post">
 				<table>
 					<tr>
 						<td>아이디</td>
@@ -50,7 +55,7 @@
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input name="userPass" type="password"></td>
+						<td><input name="userPwd" type="password"></td>
 					</tr>
 					<tr>
 						<td colspan="3" align="center">
@@ -60,17 +65,21 @@
 					</tr>
 				</table>
 			</form>
-			<!-- <table>
+		</c:when>
+		<c:otherwise>
+			<table>
 				<tr>
 					<td colspan="2">
-						<h3>xxx님 환영합니다</h3>
+						<h3>${loginMem.userName} 님 환영합니다</h3>
 					</td>
 				</tr>
 				<tr>
 					<td><a href="">마이페이지</a></td>
-					<td><a href="">로그아웃</a></td>
+					<td><a href="logout.me">로그아웃</a></td>
 				</tr>
-			</table> -->
+			</table> 
+		</c:otherwise>
+		</c:choose>		
 		</div>
 
 		<br>
@@ -78,7 +87,7 @@
 		<div class="nav-area" align="center">
 			<div class="menu">HOME</div>
 			<div class="menu">공지사항</div>
-			<div class="menu">게시판</div>
+			<div class="menu"onclick="location.href='list.bo?nowPage=1'">게시판</div>
 			<div class="menu">etc</div>
 		</div>
 

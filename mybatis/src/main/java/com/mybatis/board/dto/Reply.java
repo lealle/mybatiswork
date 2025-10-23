@@ -1,4 +1,4 @@
-package com.mybatis.common.dto;
+package com.mybatis.board.dto;
 
 import java.util.Date;
 
@@ -58,6 +58,11 @@ public class Reply {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	@Override
+	public String toString() {
+		return "Reply [replyno=" + replyno + ", replycontent=" + replycontent + ", refbno=" + refbno + ", replywriter="
+				+ replywriter + ", createdate=" + createdate + ", status=" + status + "]";
 	}
 
     
