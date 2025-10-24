@@ -10,12 +10,12 @@ public class Reply {
 	private Date createdate;
 	private String status;
     
+	
     
 	public Reply() {
 	}
 	public Reply(int reply_no, String reply_content, int ref_bno, String reply_writer, Date create_date,
 			String status) {
-		super();
 		this.replyno = reply_no;
 		this.replycontent = reply_content;
 		this.refbno = ref_bno;
@@ -23,34 +23,34 @@ public class Reply {
 		this.createdate = create_date;
 		this.status = status;
 	}
-	public int getReply_no() {
+	public int getReplyno() {
 		return replyno;
 	}
-	public void setReply_no(int reply_no) {
+	public void setReplyno(int reply_no) {
 		this.replyno = reply_no;
 	}
-	public String getReply_content() {
+	public String getReplycontent() {
 		return replycontent;
 	}
-	public void setReply_content(String reply_content) {
+	public void setReplycontent(String reply_content) {
 		this.replycontent = reply_content;
 	}
-	public int getRef_bno() {
+	public int getRefbno() {
 		return refbno;
 	}
-	public void setRef_bno(int ref_bno) {
+	public void setRefbno(int ref_bno) {
 		this.refbno = ref_bno;
 	}
-	public String getReply_writer() {
+	public String getReplywriter() {
 		return replywriter;
 	}
-	public void setReply_writer(String reply_writer) {
+	public void setReplywriter(String reply_writer) {
 		this.replywriter = reply_writer;
 	}
-	public Date getCreate_date() {
+	public Date getCreatedate() {
 		return createdate;
 	}
-	public void setCreate_date(Date create_date) {
+	public void setCreatedate(Date create_date) {
 		this.createdate = create_date;
 	}
 	public String getStatus() {
