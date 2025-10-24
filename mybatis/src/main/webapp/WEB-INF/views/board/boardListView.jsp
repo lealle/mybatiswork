@@ -60,7 +60,7 @@
 		<tbody>
 			<c:forEach var="b" items="${list }" varStatus="s">
 				<tr>
-					<td>${pi.totalRecord - ((pi.nowPage-1)*pi.numPerPage)-s.index + 2 }</td>
+					<td>${pi.totalRecord - ((pi.nowPage-1)*pi.numPerPage)-s.index }</td>
 					<td> <a href="detail.bo?bno=${b.boardno }">${b.boardtitle  }</a>  </td>
 					<td>${b.boardwriter  }</td>
 					<td>${b.count  }</td>
@@ -72,6 +72,14 @@
 		</table>
 	</div>
 	<br>
+	<div align="center" class="insert">
+		<form action="boardInsert.bo">
+			<input type="submit" value="글쓰기">
+		</form>
+	</div>
+	
+	
+	
 	<div id="paging-area">
 		<c:if test="${pi.nowPage ne 1 }">
 			<c:choose>

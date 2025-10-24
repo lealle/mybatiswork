@@ -15,7 +15,11 @@ public interface BoardService {
 	// 게시판 상세조회
 	int increaseCount(int boardNo);
 	Board selectBoard(int boardNo);
+	int replyRecord(int boardNo);
 	ArrayList<Reply> selectReplyList(int boardNo);
+	ArrayList<Reply> selectReplyList(int boardNo, PageInfo pi);
+	
+	int insertBoard(Board b);
 	
 	// 게시글 검색
 	int selectSearchCount(HashMap<String, String> map);

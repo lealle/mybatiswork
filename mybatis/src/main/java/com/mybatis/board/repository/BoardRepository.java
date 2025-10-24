@@ -56,7 +56,24 @@ public class BoardRepository {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectReplyList",boardNo); // List 는 Object로 받기에 형변환 필요
 	}
 	
+	public ArrayList<Reply> selectReplyList(SqlSession sqlSession, int boardNo, PageInfo pi) {
+		int limit = pi.getNumPerPage();		// 5
+		int offset = pi.getStartPage()-1;	// 
+		RowBounds rowBounds = new RowBounds(offset, limit); // 이거 넘겨줄때는 반드시 3개 넘겨줘야함
+		return (ArrayList)sqlSession.selectList("boardMapper.selectReplyList",boardNo, rowBounds); // List 는 Object로 받기에 형변환 필요
+	}
 
+	public int replyRecord(SqlSession sqlSession, int boardNo) {
+		return sqlSession.selectOne("boardMapper.replyRecord", boardNo);	
+	}
+
+	public int insertReply(SqlSession sqlSession, Reply r) {
+		return sqlSession.insert("boardMapper.insertReply",r);
+	}
+
+	public int insertBoard(SqlSession sqlSession, Board b) {
+		return sqlSession.insert("boardMapper.insertBoard",b);
+	}
 
 
 }

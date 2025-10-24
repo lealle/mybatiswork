@@ -8,7 +8,7 @@
 </head>
 <body>
 	<jsp:include page="common/menubar.jsp"></jsp:include>
-
+	<img alt="" src="../resources/img/img1.jpg">
 
 
 </body>

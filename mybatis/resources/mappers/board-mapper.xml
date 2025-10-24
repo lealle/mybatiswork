@@ -69,14 +69,12 @@
   </select>
   
   
-  <update id="increaseCount" >
+  <update id="increaseCount">
     update Board 
     set count = count + 1  
     where status='Y' 
     and board_no = #{boardno}
   </update>
-  
-  
   
   <select id="selectBoard"  resultMap="boardResultSet">
     select * from Board where status='Y' and board_no = #{boardno}
@@ -86,9 +84,17 @@
     order by reply_no desc 
   </select>
   
+  <select id="replyRecord"  resultType="_int">
+    select count(*) from Reply where status='Y' and ref_bno = #{boardno}
+  </select>
   
+    <insert id="insertReply">
+    insert into Reply values(seq_rno.nextval, #{replycontent}, #{refbno}, #{replywriter}, default, default) 
+  </insert>
   
-  
-  
-  
+   <insert id="insertBoard">
+   insert into  board
+	values(seq_bno.nextval, #{boardtitle}, #{boardcontent},#{boardwriter}, default, default, default);
+
+  </insert>
 </mapper>
